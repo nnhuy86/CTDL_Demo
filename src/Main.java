@@ -3,6 +3,34 @@ import java.io.IOException;
 import java.io.FileReader;
 
 public class Main {
+    static DanhSachCauHoiThi mDanhSachCauHoiThi;
+
+    public static int hashCode(final String maMH)
+    {
+        int sum = 0;
+        for(int i = 0; i < maMH.length(); i++)
+        {
+            sum += (i+1)*(maMH.charAt(i) * maMH.charAt(i));
+        }
+        return sum % 2000;
+    }
+    public static void themCauHoi(CauHoi cauhoi)
+    {
+        int id = mDanhSachCauHoiThi.Count + 1;
+        int index = hashCode(cauhoi.maMH);
+
+        cauhoi.id = id;
+
+        while (mDanhSachCauHoiThi.Data[index].id != -1)
+        {
+            index++;
+            // not over 2000
+            index %= mDanhSachCauHoiThi.MaxSize;
+        }
+
+        mDanhSachCauHoiThi.Data[index] = cauhoi;
+        mDanhSachCauHoiThi.Count++;
+    }
     public static void layCauHoiTuFile() throws IOException
     {
         // Open file CauHoi.txt
@@ -51,6 +79,8 @@ public class Main {
                 // Read next line from file, for DapAn
                 sb.append(line);
                 cauhoi.DA = line;
+
+                themCauHoi(cauhoi);
             }
         }
         catch(IOException e)
