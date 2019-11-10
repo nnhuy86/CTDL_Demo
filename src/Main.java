@@ -4,7 +4,7 @@ import java.io.FileReader;
 
 public class Main {
     static DanhSachCauHoiThi mDanhSachCauHoiThi;
-
+    static NodeMonHoc mHeadDanhSachMonHoc;
     public static int hashCode(final String maMH)
     {
         int sum = 0;
@@ -95,9 +95,13 @@ public class Main {
 
     }
 
+    public static NodeMonHoc insertMH(NodeMonHoc root, MonHoc data)
+    {
+        return root;
+    }
     public static void layMonHocTuFile() throws IOException
     {
-     // Open file MonHoc.txt
+        // Open file MonHoc.txt
         BufferedReader br = new BufferedReader(new FileReader("MonHoc.txt"));
         try
         {
@@ -110,15 +114,18 @@ public class Main {
 
             for (int i = 0; i < max; i++)
             {
-                //MonHoc monhoc = new MonHoc();
-
-                // Read next line from file, for MaMH
-                sb.append(line);
-                //monhoc.maMH = line;
+                MonHoc monhoc = new MonHoc();
 
                 // Read next line from file, for TenMH
                 sb.append(line);
-                // monhoc.tenMH = line;
+                monhoc.tenMH = line;
+
+                // Read next line from file, for MaMH
+                sb.append(line);
+                monhoc.maMH = line;
+
+                // insert MonHoc to link list
+                insertMH(mHeadDanhSachMonHoc, monhoc);
             }
         }
         catch(IOException e)
