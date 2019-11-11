@@ -1,6 +1,11 @@
 
 public class NodeMonHoc {
-    NodeMonHoc Left;
-    NodeMonHoc Right;
-    MonHoc Data;
+    MonHoc data;
+    NodeMonHoc next;
+
+    NodeMonHoc(MonHoc _data)
+    {
+        data = _data;
+        next = null;
+    }
 }
