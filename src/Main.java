@@ -105,13 +105,15 @@ public class Main {
             return node;
         }
 
+        // traverse node from head to tail by loop
+        // move current node to next side node
         NodeMonHoc root = head;
         while(root.next != null)
         {
             root = root.next;
         }
-        // out of while loop, then root.next = null
-        root.next = node;
+        // out of while loop, then root.next = null, it is a tail node
+        root.next = node; // insert node at tail
         return head;
     }
     public static void layMonHocTuFile() throws IOException
