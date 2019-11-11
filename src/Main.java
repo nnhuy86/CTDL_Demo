@@ -95,9 +95,26 @@ public class Main {
 
     }
 
-    public static NodeMonHoc insertMH(NodeMonHoc root, MonHoc data)
+    // insert MH into doubly link list at tail
+    public static NodeMonHoc insertMH(NodeMonHoc head, MonHoc data)
     {
-        return root;
+        NodeMonHoc node = new NodeMonHoc(data);
+        if(head == null)
+        {
+            head = node;
+            return node;
+        }
+
+        // traverse node from head to tail by loop
+        // move current node to next side node
+        NodeMonHoc root = head;
+        while(root.next != null)
+        {
+            root = root.next;
+        }
+        // out of while loop, then root.next = null, it is a tail node
+        root.next = node; // insert node at tail
+        return head;
     }
     public static void layMonHocTuFile() throws IOException
     {
